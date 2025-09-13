@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Product - Shoply</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo">Shoply</div>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <button id="cart-btn">Cart (<span id="cart-count">0</span>)</button>
+    </nav>
+  </header>
+
+  <main class="product-page">
+    <div class="product-card large">
+      <div class="product-media" id="prod-image"></div>
+      <div class="product-info">
+        <h1 id="prod-title">Product Title</h1>
+        <p id="prod-desc">Detailed description about the product. This is a demo frontend-only page.</p>
+        <div class="price">₹<span id="prod-price">999.00</span></div>
+        <button id="add-to-cart" class="btn">Add to Cart</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Demo eCommerce Frontend</p>
+  </footer>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const id = params.get('id') || 'p1';
+    const products = JSON.parse(localStorage.getItem('demo_products') || '[]');
+    const p = products.find(x=>x.id===id) || products[0] || {title:'Sample', price:999, desc:'Demo product', image:'/assets/placeholder-2.svg'};
+    document.getElementById('prod-title').innerText = p.title;
+    document.getElementById('prod-price').innerText = p.price.toFixed(2);
+    document.getElementById('prod-desc').innerText = p.description || p.desc || 'Description unavailable';
+    document.getElementById('prod-image').style.backgroundImage = `url(${p.image || '/assets/placeholder-2.svg'})`;
+
+    document.getElementById('add-to-cart').addEventListener('click', ()=>{
+      let cart = JSON.parse(localStorage.getItem('demo_cart')||'[]');
+      const item = {id: p.id, title:p.title, price:p.price, qty:1};
+      const found = cart.find(i=>i.id===item.id);
+      if(found) found.qty++;
+      else cart.push(item);
+      localStorage.setItem('demo_cart', JSON.stringify(cart));
+      alert('Added to cart (demo)');
+    });
+  </script>
+</body>
+</html>

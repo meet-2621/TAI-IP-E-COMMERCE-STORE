@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shoply - Demo eCommerce Frontend</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo">Shoply</div>
+    <nav class="nav">
+      <input id="search" placeholder="Search products..." />
+      <select id="category">
+        <option value="all">All Categories</option>
+        <option value="apparel">Apparel</option>
+        <option value="electronics">Electronics</option>
+        <option value="accessories">Accessories</option>
+      </select>
+      <button id="cart-btn">Cart (<span id="cart-count">0</span>)</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Discover the latest collection</h1>
+        <p>Modern products, secure checkout (demo), fast UI.</p>
+        <a href="#products" class="btn">Shop Now</a>
+      </div>
+    
+      <div class="hero-art"></div>
+    </section>
+
+    <section id="products" class="products-section">
+      <h2>Shop New Collection</h2>
+      <div id="products-grid" class="grid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Demo eCommerce Frontend • No backend • Built for learning</p>
+  </footer>
+  <div id="cart-modal" class="modal hidden">
+    <div class="modal-content">
+      <button id="close-cart" class="close">✕</button>
+      <h3>Your Cart</h3>
+      <div id="cart-items"></div>
+      <div class="cart-total">Total: ₹<span id="cart-total">0.00</span></div>
+      <button id="checkout" class="btn">Proceed to Checkout (Demo)</button>
+    </div>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
